@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block content %}
+
+<style>
+  p {
+    font-size: 14px;
+  }
+  h2 {
+    margin-top: 15px;
+  }
+</style>
+<div style="height: 700px; overflow: scroll;">
+  <h2 class="text-center">File List</h2>
+  <hr style="color: #ccc;">
+  <p class="text-center">Shows the List of Files</p>
+  {% for file in files %}
+    <div class="container-fluid">
+      <table class="table table-bordered table-md">
+        <thead class="table-dark mb-4 text-center">
+          <tr>
+            <th scope="col"><i class="fas fa-file-alt"></i> File Type</th>
+            <th scope="col"><i class="fas fa-download"></i> Download</th>
+            <th scope="col"><i class="fas fa-eye"></i> Preview</th>
+            <th scope="col"><i class="fas fa-envelope"></i> Send Email</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <tr>
+            <th scope="col">{{file.file_type}}</th>
+            <td><a style="color: rgba(219, 22, 71); text-decoration: none;" href="{% url 'download_file' file.id %}" download>Download</a></td>
+            <td><a style="color: rgba(219, 22, 71); text-decoration: none;" href="{{ file.file.url }}">Preview</a></td>
+            <td><a style="color: rgba(219, 22, 71); text-decoration: none;" href="{% url 'send_email' file.id %}">Send via Email</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

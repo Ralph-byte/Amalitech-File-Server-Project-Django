@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block content %}
+  <h2  class="text-center">Send via Email</h2>
+  <hr style="color: #ccc;">
+  <div class="d-flex justify-content-center">
+    <div class="col-md-6">
+      <div class="text-center">
+        <style>
+          h2{
+            margin-top: 15px;
+           }
+        </style>
+
+        <h3>{{ file.title }}</h3>
+        <p>{{ file.description }}</p>
+
+      </div>
+        <form method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="email" class="form-label">Recipient Email:</label>
+            <input type="email" name="email" class="form-control" required>
+          </div>
+          <div class="text-left">
+            <button type="submit" class="btn btn-danger">Send</button>
+          </div>
+        </form>
+    </div>
+  </div>
+{% endblock  %}

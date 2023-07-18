@@ -1,0 +1,6 @@
+pip install django-email-verification
+pip install django
+pip install pillow
+pip install django-bootstrap-v5
+pip install -U django-jazzmin
+pip install six

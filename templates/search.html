@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class= "text-center" style=" margin-top: 15px;">Search</h2>
+<hr style="color: #ccc;">
+<p class= "text-center">Kindly clear field to search.</p>
+  <div  style=" margin-top: 15px; display: flex; justify-content: center; align-items: center; height: 10vh;">
+      <form method="get" class="b-3">
+        <div class="input-group">
+          <input type="text" name="q" value="{{ query }}" style="width: 250px; border: 1px); color: rgba(219, 22, 71); font-size:14px;" placeholder="Search files..">
+          <button class="btn btn-danger" type="submit"><i class="fas fa-search"></i></button>
+        </div>
+      </form>
+  </div>
+
+  {% if files %}
+    <div class="text-center">
+      <h3>Search Results:</h3>
+      <ul class="list-group mx-auto " style="width: 30%; ">
+        {% for file in files %}
+          <li class="list-group-item"><a class="text-left" href="{{ file.file.url }}" style="text-decoration: none; color: black; font-size:14px;">{{ file.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% else %}
+    <p class="text-center">No files found.</p>
+  {% endif %}
+{% endblock %}
